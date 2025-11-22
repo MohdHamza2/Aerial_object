@@ -1,0 +1,9 @@
+# Add project dependencies here
+streamlit
+tensorflow
+numpy
+pillow
+opencv-python
+plotly
+matplotlib
+#ultralytics

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Hamza/Aerial_object/runs/mlflow/601040652125228397/d72106f69de6410eb6b612d864b474ab/artifacts
+end_time: 1763747674795
+entry_point_name: ''
+experiment_id: '601040652125228397'
+lifecycle_stage: active
+run_id: d72106f69de6410eb6b612d864b474ab
+run_name: train5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763745823160
+status: 3
+tags: []
+user_id: Hamza

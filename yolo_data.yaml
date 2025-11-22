@@ -1,0 +1,12 @@
+# Dataset configuration for YOLOv8
+path: "C:/Users/Hamza/Aerial_object/object_detection_dataset"
+
+train: "C:/Users/Hamza/Aerial_object/object_detection_dataset/images/train"
+val:   "C:/Users/Hamza/Aerial_object/object_detection_dataset/images/val"
+test:  "C:/Users/Hamza/Aerial_object/object_detection_dataset/images/test"
+
+names:
+  0: bird
+  1: drone
+
+
