@@ -1,10 +1,16 @@
+# Ignore all heavy model files
 *.keras
 *.h5
-*.pth
 *.pt
-notebooks/
+*.pth
+
+# Ignore entire folders
 models/
+notebooks/
 runs/
+
+# EXCEPT the models we need
 !streamlit_model/
 !runs/detect/train5/weights/best.pt
+
 
