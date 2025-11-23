@@ -1,3 +1,10 @@
-__pycache__/
-*.pyc
+*.keras
+*.h5
+*.pth
+*.pt
+notebooks/
+models/
 runs/
+!streamlit_model/
+!runs/detect/train5/weights/best.pt
+
