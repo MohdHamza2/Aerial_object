@@ -1,6 +1,6 @@
 # Add project dependencies here
 streamlit
-tensorflow==2.15.0
+tensorflow
 numpy
 pillow
 opencv-python-headless
