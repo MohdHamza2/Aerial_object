@@ -23,13 +23,27 @@ st.markdown("### Choose between **Classification**, **YOLO Detection**, or **Liv
 # ----------------------------------------
 # Load Classification Model
 # ----------------------------------------
-@st.cache_resource
-def load_trained_model():
-    saved = tf.saved_model.load("streamlit_model")
-    infer = saved.signatures["serving_default"]
-    return infer
+import tensorflow as tf
 
-classifier_model = load_trained_model()
+@st.cache_resource
+def load_tflite_model():
+    interpreter = tf.lite.Interpreter(model_path="app/model.tflite")
+    interpreter.allocate_tensors()
+    return interpreter
+
+tflite_model = load_tflite_model()
+def tflite_predict(img_array):
+    input_details = tflite_model.get_input_details()
+    output_details = tflite_model.get_output_details()
+
+    input_index = input_details[0]['index']
+    output_index = output_details[0]['index']
+
+    tflite_model.set_tensor(input_index, img_array)
+    tflite_model.invoke()
+
+    return tflite_model.get_tensor(output_index)[0][0]
+
 
 # ----------------------------------------
 # Load YOLO Model
@@ -90,8 +104,8 @@ if uploaded_file and option == "Classification (Bird vs Drone)":
     st.image(image_obj, caption="Uploaded Image")
 
     img_array = preprocess_image(image_obj)
-    output = classifier_model(tf.constant(img_array))
-    prediction = list(output.values())[0].numpy()[0][0]
+    prediction = tflite_predict(img_array)
+
 
     label = "Drone 🚁" if prediction > 0.5 else "Bird 🐦"
     confidence = prediction if label == "Drone 🚁" else 1 - prediction

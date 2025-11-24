@@ -1,6 +1,6 @@
 # Add project dependencies here
 streamlit
-tensorflow
+tflite-runtime
 numpy
 pillow
 opencv-python-headless
