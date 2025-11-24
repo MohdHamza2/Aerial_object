@@ -27,7 +27,7 @@ import tensorflow as tf
 
 @st.cache_resource
 def load_tflite_model():
-    interpreter = tf.lite.Interpreter(model_path="app/model.tflite")
+    interpreter = tf.lite.Interpreter(model_path="../model.tflite")
     interpreter.allocate_tensors()
     return interpreter
 
