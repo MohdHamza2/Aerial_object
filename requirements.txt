@@ -1,9 +1,9 @@
 # Add project dependencies here
 streamlit
-tensorflow
+tensorflow==2.15.0
 numpy
 pillow
 opencv-python-headless
 plotly
 matplotlib
-#ultralytics
+ultralytics
