@@ -1,9 +1,9 @@
 # Add project dependencies here
-streamlit
-tflite-runtime
+streamlit==1.32.0
 numpy
 pillow
-opencv-python-headless
+opencv-python-headless==4.8.1.78
 plotly
 matplotlib
-ultralytics
+ultralytics==8.0.196
+tensorflow==2.12.0
