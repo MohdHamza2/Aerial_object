@@ -8,6 +8,10 @@ from ultralytics import YOLO
 import cv2
 import tempfile
 
+import os
+IS_CLOUD = os.getenv("STREAMLIT_RUNTIME") is not None
+
+
 # ----------------------------------------
 # Page Config
 # ----------------------------------------
@@ -132,19 +136,24 @@ if uploaded_file and option == "Classification (Bird vs Drone)":
 # YOLO IMAGE DETECTION
 # ----------------------------------------
 elif uploaded_file and option == "Object Detection (YOLO)":
-    image_obj = Image.open(uploaded_file).convert("RGB")
-    st.image(image_obj, caption="Uploaded Image")
 
-    with st.spinner("Running YOLO detection..."):
-        results = yolo_model(image_obj, save=False)
-        result_img = results[0].plot()
+    if IS_CLOUD:
+        st.warning("🚫 YOLO is not supported on Streamlit Cloud. Please run locally.")
 
-    st.subheader("📍 Detection Result")
-    st.image(result_img, caption="YOLO Output")
+    else:    
+        image_obj = Image.open(uploaded_file).convert("RGB")
+        st.image(image_obj, caption="Uploaded Image")
 
-    boxes = results[0].boxes.cls.tolist()
-    st.write(f"✅ Birds detected: {boxes.count(0)}")
-    st.write(f"✅ Drones detected: {boxes.count(1)}")
+        with st.spinner("Running YOLO detection..."):
+            results = yolo_model(image_obj, save=False)
+            result_img = results[0].plot()
+
+        st.subheader("📍 Detection Result")
+        st.image(result_img, caption="YOLO Output")
+
+        boxes = results[0].boxes.cls.tolist()
+        st.write(f"✅ Birds detected: {boxes.count(0)}")
+        st.write(f"✅ Drones detected: {boxes.count(1)}")
 
 # ----------------------------------------
 # ✅ WEBCAM LIVE YOLO MODE
