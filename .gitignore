@@ -3,6 +3,7 @@
 *.h5
 *.pt
 *.pth
+*.pkl
 
 # Ignore entire folders
 models/
